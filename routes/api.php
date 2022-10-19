@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\V1\Messages\ReceiveMessages\ReceiveMessages;
+use App\Http\Controllers\V1\Messages\SendMessages\SendMessages;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/v1/inbox', [ReceiveMessages::class, 'get'])->name('inbox');
+Route::get('/v1/send', [SendMessages::class, 'get'])->name('send.get');
+Route::post('/v1/send', [SendMessages::class, 'post'])->name('send.post');
